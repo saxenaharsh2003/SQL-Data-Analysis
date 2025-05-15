@@ -71,25 +71,6 @@ SELECT product_id, AVG(quantity) AS avg_quantity
 FROM order_items
 GROUP BY product_id;
 
--- 5. CREATE VIEWS FOR ANALYSIS
--- --------------------------------------------
-
--- View to show top spending customers (over 3000)
-CREATE VIEW top_customers AS
-SELECT customer_id, SUM(total_amount) AS total_spent
-FROM orders
-GROUP BY customer_id
-HAVING total_spent > 3000;
-
--- View to see order count per customer
-CREATE VIEW customer_order_count AS
-SELECT customer_id, COUNT(*) AS order_count
-FROM orders
-GROUP BY customer_id;
-
--- 6. OPTIMIZE QUERIES WITH INDEXES
--- --------------------------------------------
-
 -- Create index on customer_id for faster filtering in orders
 CREATE INDEX idx_orders_customer_id ON orders(customer_id);
 
